@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="primary">#2E7D32</color> <!-- Green 800 -->
+    <color name="primary_light">#60AD5E</color>
+    <color name="primary_dark">#005005</color>
+    <color name="secondary">#FFA000</color> <!-- Amber 700 -->
+    <color name="secondary_light">#FFD149</color>
+    <color name="secondary_dark">#C67100</color>
+
+    <color name="background">#F5F5F5</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="error">#B00020</color>
+
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+</resources>

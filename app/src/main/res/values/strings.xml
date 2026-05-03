@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SavingProject</string>
+    <string name="title_savings">My Savings</string>
+    <string name="add_goal_description">Add new savings goal</string>
+    <string name="progress_format">Saved: $%.2f of $%.2f</string>
+    <string name="empty_goals_message">No savings goals yet. Tap + to add one!</string>
+
+    <string name="dialog_add_title">Add Saving Goal</string>
+    <string name="dialog_edit_title">Edit Saving Goal</string>
+    <string name="hint_goal_name">Goal Title (e.g., New Guitar)</string>
+    <string name="hint_target_amount">Target Amount</string>
+    <string name="hint_current_amount">Current Amount</string>
+    <string name="hint_target_date">Target Date (Optional)</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_delete">Delete</string>
+    <string name="error_fields_required">Please enter name and target amount</string>
+    <string name="date_format">Target: %s</string>
+</resources>
