@@ -1,4 +1,4 @@
-package com.example.savingproject;
+package com.example.savingproject.UI.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.savingproject.databinding.ItemSavingBinding;
 import java.util.List;
+
+import com.example.savingproject.MODEL.SavingsGoal;
 
 public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHolder> {
     private List<SavingsGoal> savingsGoals;
@@ -25,8 +27,8 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SavingsGoal goal = savingsGoals.get(position);
         holder.binding.goalName.setText(goal.getName());
-        holder.binding.goalAmount.setText(String.format("Progress: $%.2f / $%.2f", goal.getCurrentAmount(), goal.getTargetAmount()));
-        
+        holder.binding.goalAmount.setText(String.format("Progress: ₱%.2f / ₱%.2f", goal.getCurrentAmount(), goal.getTargetAmount()));
+
         int progress = (int) ((goal.getCurrentAmount() / goal.getTargetAmount()) * 100);
         holder.binding.goalProgress.setProgress(progress);
     }
@@ -34,6 +36,12 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
     @Override
     public int getItemCount() {
         return savingsGoals.size();
+    }
+
+    // --- ADDED THIS METHOD TO REFRESH THE RECYCLERVIEW DYNAMICALLY ---
+    public void updateData(List<SavingsGoal> newGoals) {
+        this.savingsGoals = newGoals;
+        notifyDataSetChanged(); // Tells the list UI to refresh the cards smoothly
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

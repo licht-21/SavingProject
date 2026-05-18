@@ -1,4 +1,4 @@
-package com.example.savingproject;
+package com.example.savingproject.MODEL;
 
 public class SavingsGoal {
     private int id;
