@@ -20,6 +20,14 @@ import java.util.List;
 
 public class ArchiveActivity extends AppCompatActivity implements SavingsAdapter.OnGoalActionListener {
 
+    @Override
+    public void onViewHistory(SavingsGoal goal) {
+        startActivity(DepositHistoryActivity.newIntent(this, goal));
+    }
+
+    @Override
+    public void onDuplicateGoal(SavingsGoal goal) { }
+
     private ActivityArchiveBinding binding;
     private SavingsViewModel viewModel;
     private SavingsAdapter adapter;

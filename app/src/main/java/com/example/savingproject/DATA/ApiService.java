@@ -1,6 +1,8 @@
 package com.example.savingproject.DATA;
 
+import com.example.savingproject.MODEL.Deposit;
 import com.example.savingproject.MODEL.SavingsGoal;
+import com.example.savingproject.MODEL.SavingsSummary;
 import com.example.savingproject.MODEL.UserSettings;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
@@ -117,7 +119,16 @@ public interface ApiService {
     Call<AuthResponse> loginUser(@Body LoginRequest request);
 
     @GET("api/savings")
-    Call<List<SavingsGoal>> getSavings(@Query("archived") int archived);
+    Call<List<SavingsGoal>> getSavings(@Query("archived") int archived, @Query("sort") String sort);
+
+    @GET("api/savings/summary")
+    Call<SavingsSummary> getSavingsSummary();
+
+    @GET("api/savings/{id}/deposits")
+    Call<List<Deposit>> getDeposits(@Path("id") int goalId);
+
+    @POST("api/savings/{id}/duplicate")
+    Call<SavingsGoal> duplicateSavingsGoal(@Path("id") int goalId);
 
     @POST("api/savings")
     Call<SavingsGoal> createSavingsGoal(@Body CreateGoalRequest request);

@@ -3,9 +3,9 @@ package com.example.savingproject.UI.main;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -16,13 +16,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.savingproject.DATA.SessionManager;
 import com.example.savingproject.MODEL.SavingsGoal;
+import com.example.savingproject.MODEL.SavingsSummary;
 import com.example.savingproject.R;
 import com.example.savingproject.UI.Login.LoginActivity;
 import com.example.savingproject.UI.adapter.SavingsAdapter;
 import com.example.savingproject.databinding.ActivityMainBinding;
+import com.example.savingproject.databinding.DialogDepositBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements SavingsAdapter.OnGoalActionListener {
 
@@ -47,15 +50,56 @@ public class MainActivity extends AppCompatActivity implements SavingsAdapter.On
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setSupportActionBar(binding.toolbar);
+
         binding.savingsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SavingsAdapter(this, SavingsAdapter.DisplayMode.ACTIVE);
         binding.savingsRecyclerView.setAdapter(adapter);
 
         viewModel = new ViewModelProvider(this).get(SavingsViewModel.class);
         viewModel.getActiveSavings().observe(this, this::renderSavings);
+        viewModel.getSummary().observe(this, this::renderSummary);
+
+        binding.swipeRefresh.setOnRefreshListener(() -> {
+            viewModel.refreshActiveSavings();
+            binding.swipeRefresh.setRefreshing(false);
+        });
 
         binding.addGoalFab.setOnClickListener(v -> openAddGoal());
         BottomNavHelper.setup(this, binding.bottomNav, R.id.nav_active);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.sort_newest) {
+            applySort(SavingsViewModel.SORT_NEWEST);
+            return true;
+        }
+        if (id == R.id.sort_name) {
+            applySort(SavingsViewModel.SORT_NAME);
+            return true;
+        }
+        if (id == R.id.sort_due_date) {
+            applySort(SavingsViewModel.SORT_DUE_DATE);
+            return true;
+        }
+        if (id == R.id.sort_progress) {
+            applySort(SavingsViewModel.SORT_PROGRESS);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void applySort(String sort) {
+        viewModel.setActiveSort(sort);
+        viewModel.refreshActiveSavings();
     }
 
     @Override
@@ -77,6 +121,23 @@ public class MainActivity extends AppCompatActivity implements SavingsAdapter.On
         return true;
     }
 
+    private void renderSummary(SavingsSummary summary) {
+        if (summary == null) return;
+        binding.summaryCard.summarySavedText.setText(getString(R.string.summary_saved,
+                summary.getTotalSaved()));
+        binding.summaryCard.summaryTargetText.setText(getString(R.string.summary_target,
+                summary.getTotalTarget()));
+        binding.summaryCard.summaryGoalsText.setText(getString(R.string.summary_goals,
+                summary.getActiveGoalCount()));
+        if (summary.getOverdueCount() > 0) {
+            binding.summaryCard.summaryOverdueText.setVisibility(View.VISIBLE);
+            binding.summaryCard.summaryOverdueText.setText(getString(R.string.summary_overdue,
+                    summary.getOverdueCount()));
+        } else {
+            binding.summaryCard.summaryOverdueText.setVisibility(View.GONE);
+        }
+    }
+
     private void renderSavings(List<SavingsGoal> savings) {
         if (savings == null) savings = new ArrayList<>();
         adapter.updateData(savings);
@@ -92,6 +153,23 @@ public class MainActivity extends AppCompatActivity implements SavingsAdapter.On
     @Override
     public void onGoalClick(SavingsGoal goal) {
         showDepositDialog(goal);
+    }
+
+    @Override
+    public void onViewHistory(SavingsGoal goal) {
+        startActivity(DepositHistoryActivity.newIntent(this, goal));
+    }
+
+    @Override
+    public void onDuplicateGoal(SavingsGoal goal) {
+        viewModel.duplicateGoal(goal.getId()).observe(this, duplicated -> {
+            if (duplicated != null) {
+                Toast.makeText(this, R.string.duplicate_success, Toast.LENGTH_SHORT).show();
+                viewModel.refreshActiveSavings();
+            } else {
+                Toast.makeText(this, R.string.duplicate_failed, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -130,16 +208,21 @@ public class MainActivity extends AppCompatActivity implements SavingsAdapter.On
     }
 
     private void showDepositDialog(SavingsGoal goal) {
-        EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        input.setHint(R.string.deposit_hint);
+        DialogDepositBinding dialogBinding = DialogDepositBinding.inflate(getLayoutInflater());
+
+        dialogBinding.quick100Button.setOnClickListener(v ->
+                dialogBinding.depositAmountInput.setText("100"));
+        dialogBinding.quick500Button.setOnClickListener(v ->
+                dialogBinding.depositAmountInput.setText("500"));
+        dialogBinding.quick1000Button.setOnClickListener(v ->
+                dialogBinding.depositAmountInput.setText("1000"));
 
         new AlertDialog.Builder(this)
                 .setTitle(R.string.deposit_title)
                 .setMessage(goal.getName())
-                .setView(input)
+                .setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.deposit_confirm, (dialog, which) -> {
-                    String amountStr = input.getText().toString().trim();
+                    String amountStr = dialogBinding.depositAmountInput.getText().toString().trim();
                     if (amountStr.isEmpty()) {
                         Toast.makeText(this, R.string.invalid_amount, Toast.LENGTH_SHORT).show();
                         return;

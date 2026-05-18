@@ -3,7 +3,9 @@ package com.example.savingproject.DATA;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.savingproject.MODEL.Deposit;
 import com.example.savingproject.MODEL.SavingsGoal;
+import com.example.savingproject.MODEL.SavingsSummary;
 import com.example.savingproject.MODEL.UserSettings;
 
 import java.util.List;
@@ -73,8 +75,8 @@ public class SavingsRepository {
         return signupResult;
     }
 
-    public void fetchSavings(boolean archived, MutableLiveData<List<SavingsGoal>> result) {
-        apiService.getSavings(archived ? 1 : 0).enqueue(new Callback<List<SavingsGoal>>() {
+    public void fetchSavings(boolean archived, String sort, MutableLiveData<List<SavingsGoal>> result) {
+        apiService.getSavings(archived ? 1 : 0, sort).enqueue(new Callback<List<SavingsGoal>>() {
             @Override
             public void onResponse(Call<List<SavingsGoal>> call, Response<List<SavingsGoal>> response) {
                 result.setValue(response.isSuccessful() && response.body() != null ? response.body() : null);
@@ -160,6 +162,40 @@ public class SavingsRepository {
     public LiveData<SavingsGoal> archiveGoal(int goalId) {
         MutableLiveData<SavingsGoal> result = new MutableLiveData<>();
         apiService.archiveSavingsGoal(goalId).enqueue(goalCallback(result));
+        return result;
+    }
+
+    public void fetchSummary(MutableLiveData<SavingsSummary> result) {
+        apiService.getSavingsSummary().enqueue(new Callback<SavingsSummary>() {
+            @Override
+            public void onResponse(Call<SavingsSummary> call, Response<SavingsSummary> response) {
+                result.setValue(response.isSuccessful() ? response.body() : null);
+            }
+
+            @Override
+            public void onFailure(Call<SavingsSummary> call, Throwable t) {
+                result.setValue(null);
+            }
+        });
+    }
+
+    public void fetchDeposits(int goalId, MutableLiveData<List<Deposit>> result) {
+        apiService.getDeposits(goalId).enqueue(new Callback<List<Deposit>>() {
+            @Override
+            public void onResponse(Call<List<Deposit>> call, Response<List<Deposit>> response) {
+                result.setValue(response.isSuccessful() && response.body() != null ? response.body() : null);
+            }
+
+            @Override
+            public void onFailure(Call<List<Deposit>> call, Throwable t) {
+                result.setValue(null);
+            }
+        });
+    }
+
+    public LiveData<SavingsGoal> duplicateGoal(int goalId) {
+        MutableLiveData<SavingsGoal> result = new MutableLiveData<>();
+        apiService.duplicateSavingsGoal(goalId).enqueue(goalCallback(result));
         return result;
     }
 

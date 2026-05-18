@@ -23,6 +23,8 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
 
     public interface OnGoalActionListener {
         void onGoalClick(SavingsGoal goal);
+        void onViewHistory(SavingsGoal goal);
+        void onDuplicateGoal(SavingsGoal goal);
         void onEditGoal(SavingsGoal goal);
         void onDeleteGoal(SavingsGoal goal);
         void onArchiveGoal(SavingsGoal goal);
@@ -64,6 +66,9 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         holder.binding.goalProgress.setProgressTintList(
                 ColorStateList.valueOf(resolveProgressColor(holder, percent)));
 
+        holder.binding.goalOverdueBadge.setVisibility(
+                !archived && goal.isOverdue() ? View.VISIBLE : View.GONE);
+
         if (archived && goal.getArchivedAt() != null && !goal.getArchivedAt().isEmpty()) {
             holder.binding.goalSubtitle.setVisibility(View.VISIBLE);
             holder.binding.goalSubtitle.setText(holder.itemView.getContext().getString(
@@ -96,6 +101,14 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         menu.getMenu().findItem(R.id.action_archive).setVisible(percent >= 100);
         menu.setOnMenuItemClickListener(item -> {
             int id = item.getItemId();
+            if (id == R.id.action_history) {
+                if (listener != null) listener.onViewHistory(goal);
+                return true;
+            }
+            if (id == R.id.action_duplicate) {
+                if (listener != null) listener.onDuplicateGoal(goal);
+                return true;
+            }
             if (id == R.id.action_edit) {
                 if (listener != null) listener.onEditGoal(goal);
                 return true;

@@ -46,4 +46,21 @@
     <string name="settings_saved">Settings saved</string>
     <string name="settings_failed">Could not save settings</string>
     <string name="logout">Log out</string>
+    <string name="summary_title">Your progress</string>
+    <string name="summary_saved">Total saved: ₱%,.2f</string>
+    <string name="summary_target">Total target: ₱%,.2f</string>
+    <string name="summary_goals">Active goals: %1$d</string>
+    <string name="summary_overdue">Overdue goals: %1$d</string>
+    <string name="overdue">OVERDUE</string>
+    <string name="deposit_history">Deposit history</string>
+    <string name="duplicate_goal">Duplicate goal</string>
+    <string name="duplicate_success">Goal duplicated</string>
+    <string name="duplicate_failed">Could not duplicate goal</string>
+    <string name="empty_deposits">No deposits recorded yet.</string>
+    <string name="deposit_row">+₱%,.2f</string>
+    <string name="sort_goals">Sort goals</string>
+    <string name="sort_newest">Newest first</string>
+    <string name="sort_name">Name (A–Z)</string>
+    <string name="sort_due_date">Due date</string>
+    <string name="sort_progress">Highest progress</string>
 </resources>

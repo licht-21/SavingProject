@@ -6,4 +6,5 @@
     <color name="progress_yellow">#FFC107</color>
     <color name="progress_yellow_green">#8BC34A</color>
     <color name="progress_green">#4CAF50</color>
+    <color name="overdue_red">#D32F2F</color>
 </resources>

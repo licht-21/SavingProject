@@ -39,6 +39,9 @@
         <activity
             android:name=".UI.main.SettingsActivity"
             android:exported="false" />
+        <activity
+            android:name=".UI.main.DepositHistoryActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

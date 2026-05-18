@@ -29,6 +29,20 @@
                 android:text="Goal Name" />
 
             <TextView
+                android:id="@+id/goal_overdue_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:background="@color/overdue_red"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                android:text="@string/overdue"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/goal_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

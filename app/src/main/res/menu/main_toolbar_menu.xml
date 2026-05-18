@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_sort"
+        android:title="@string/sort_goals"
+        android:showAsAction="never">
+        <menu>
+            <item android:id="@+id/sort_newest" android:title="@string/sort_newest" />
+            <item android:id="@+id/sort_name" android:title="@string/sort_name" />
+            <item android:id="@+id/sort_due_date" android:title="@string/sort_due_date" />
+            <item android:id="@+id/sort_progress" android:title="@string/sort_progress" />
+        </menu>
+    </item>
+</menu>

@@ -17,6 +17,8 @@ public class SavingsGoal {
     private boolean isArchived;
     @SerializedName("archivedAt")
     private String archivedAt;
+    @SerializedName("isOverdue")
+    private boolean isOverdue;
 
     public int getId() { return id; }
     public String getName() { return name; }
@@ -26,6 +28,7 @@ public class SavingsGoal {
     public String getDueDate() { return dueDate; }
     public boolean isArchived() { return isArchived; }
     public String getArchivedAt() { return archivedAt; }
+    public boolean isOverdue() { return isOverdue; }
 
     public int computeProgressPercent() {
         if (isArchived) {
