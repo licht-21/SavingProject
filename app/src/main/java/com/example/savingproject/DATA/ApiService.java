@@ -1,14 +1,17 @@
 package com.example.savingproject.DATA;
 
 import com.example.savingproject.MODEL.SavingsGoal;
+import com.example.savingproject.MODEL.UserSettings;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-
-// --- Helper Model Classes for JSON Mapping ---
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 class RegisterRequest {
     private String username;
@@ -32,13 +35,66 @@ class LoginRequest {
     }
 }
 
+class CreateGoalRequest {
+    private String name;
+    @SerializedName("targetAmount")
+    private double targetAmount;
+    @SerializedName("currentAmount")
+    private double currentAmount;
+    @SerializedName("dueDate")
+    private String dueDate;
+
+    public CreateGoalRequest(String name, double targetAmount, double currentAmount, String dueDate) {
+        this.name = name;
+        this.targetAmount = targetAmount;
+        this.currentAmount = currentAmount;
+        this.dueDate = dueDate;
+    }
+}
+
+class UpdateGoalRequest {
+    private String name;
+    @SerializedName("targetAmount")
+    private double targetAmount;
+    @SerializedName("currentAmount")
+    private double currentAmount;
+    @SerializedName("dueDate")
+    private String dueDate;
+
+    public UpdateGoalRequest(String name, double targetAmount, double currentAmount, String dueDate) {
+        this.name = name;
+        this.targetAmount = targetAmount;
+        this.currentAmount = currentAmount;
+        this.dueDate = dueDate;
+    }
+}
+
+class DepositRequest {
+    private double amount;
+
+    public DepositRequest(double amount) {
+        this.amount = amount;
+    }
+}
+
+class SettingsRequest {
+    @SerializedName("darkMode")
+    private boolean darkMode;
+    @SerializedName("dateFormat")
+    private String dateFormat;
+
+    public SettingsRequest(boolean darkMode, String dateFormat) {
+        this.darkMode = darkMode;
+        this.dateFormat = dateFormat;
+    }
+}
+
 class AuthResponse {
     private String status;
     private String message;
     private UserData user;
 
     public String getStatus() { return status; }
-    public String getMessage() { return message; }
     public UserData getUser() { return user; }
 
     public static class UserData {
@@ -52,14 +108,6 @@ class AuthResponse {
     }
 }
 
-class HealthStatusResponse {
-    private String status;
-    private String message;
-
-    public String getStatus() { return status; }
-    public String getMessage() { return message; }
-}
-
 public interface ApiService {
 
     @POST("api/register")
@@ -68,9 +116,27 @@ public interface ApiService {
     @POST("api/login")
     Call<AuthResponse> loginUser(@Body LoginRequest request);
 
-    @GET("api/health")
-    Call<HealthStatusResponse> checkBackendHealth();
-
     @GET("api/savings")
-    Call<List<SavingsGoal>> getSavings();
+    Call<List<SavingsGoal>> getSavings(@Query("archived") int archived);
+
+    @POST("api/savings")
+    Call<SavingsGoal> createSavingsGoal(@Body CreateGoalRequest request);
+
+    @PUT("api/savings/{id}")
+    Call<SavingsGoal> updateSavingsGoal(@Path("id") int goalId, @Body UpdateGoalRequest request);
+
+    @DELETE("api/savings/{id}")
+    Call<Void> deleteSavingsGoal(@Path("id") int goalId);
+
+    @POST("api/savings/{id}/archive")
+    Call<SavingsGoal> archiveSavingsGoal(@Path("id") int goalId);
+
+    @POST("api/savings/{id}/deposit")
+    Call<SavingsGoal> depositToGoal(@Path("id") int goalId, @Body DepositRequest request);
+
+    @GET("api/settings")
+    Call<UserSettings> getSettings();
+
+    @PUT("api/settings")
+    Call<UserSettings> updateSettings(@Body SettingsRequest request);
 }
