@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -211,11 +212,11 @@ public class MainActivity extends AppCompatActivity implements SavingsAdapter.On
         DialogDepositBinding dialogBinding = DialogDepositBinding.inflate(getLayoutInflater());
 
         dialogBinding.quick100Button.setOnClickListener(v ->
-                dialogBinding.depositAmountInput.setText("100"));
+                incrementDepositAmount(dialogBinding.depositAmountInput, 100));
         dialogBinding.quick500Button.setOnClickListener(v ->
-                dialogBinding.depositAmountInput.setText("500"));
+                incrementDepositAmount(dialogBinding.depositAmountInput, 500));
         dialogBinding.quick1000Button.setOnClickListener(v ->
-                dialogBinding.depositAmountInput.setText("1000"));
+                incrementDepositAmount(dialogBinding.depositAmountInput, 1000));
 
         new AlertDialog.Builder(this)
                 .setTitle(R.string.deposit_title)
@@ -240,6 +241,24 @@ public class MainActivity extends AppCompatActivity implements SavingsAdapter.On
                 })
                 .setNegativeButton(R.string.cancel, null)
                 .show();
+    }
+
+    private void incrementDepositAmount(EditText input, double increment) {
+        String current = input.getText().toString().trim();
+        double value = 0;
+        if (!current.isEmpty()) {
+            try {
+                value = Double.parseDouble(current);
+            } catch (NumberFormatException ignored) {
+                value = 0;
+            }
+        }
+        double total = value + increment;
+        if (total == Math.floor(total) && !Double.isInfinite(total)) {
+            input.setText(String.valueOf((long) total));
+        } else {
+            input.setText(String.valueOf(total));
+        }
     }
 
     private void submitDeposit(int goalId, double amount) {
