@@ -10,7 +10,7 @@ public class RetrofitClient {
     // Emulator: http://10.0.2.2:5000/
     // Physical device (Wi-Fi): http://YOUR_PC_IPV4:5000/
     // USB + adb reverse: http://127.0.0.1:5000/ via adb reverse tcp:5000 tcp:5000
-    private static final String BASE_URL = "http://192.168.1.21:5000/";
+    private static final String BASE_URL = "http://192.168.1.13:5000";
     private static Retrofit retrofit = null;
 
     public static ApiService getApiService() {
