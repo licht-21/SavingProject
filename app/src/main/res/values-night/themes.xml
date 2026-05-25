@@ -1,7 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.SavingProject" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Brand colors -->
+        <item name="colorPrimary">@color/brand_blue_light</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/brand_blue_soft</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorTertiary">@color/brand_gold</item>
+        
+        <!-- Background and surface -->
+        <item name="android:windowBackground">@color/app_background</item>
+        <item name="colorSurface">@color/app_surface</item>
+        <item name="colorOnSurface">@color/app_text_primary</item>
+        <item name="colorSurfaceVariant">@color/app_card_background</item>
+        <item name="colorOnSurfaceVariant">@color/app_text_secondary</item>
+        
+        <!-- Status and Navigation Bars -->
+        <item name="android:statusBarColor">@color/app_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/bottom_nav_bg</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 </resources>

@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements SavingsAdapter.On
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
 
         binding.savingsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SavingsAdapter(this, SavingsAdapter.DisplayMode.ACTIVE);

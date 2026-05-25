@@ -1,54 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginBottom="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#304C89"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="24dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/summary_title"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="#FFFFFF"
+            android:alpha="0.8" />
 
         <TextView
             android:id="@+id/summary_saved_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/summary_target_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textSize="14sp" />
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/summary_goals_text"
-            android:layout_width="wrap_content"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="16dp"
+            android:background="#FFFFFF"
+            android:alpha="0.2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp" />
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Target"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+                    android:textColor="#FFFFFF"
+                    android:alpha="0.7" />
+
+                <TextView
+                    android:id="@+id/summary_target_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Active Goals"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+                    android:textColor="#FFFFFF"
+                    android:alpha="0.7" />
+
+                <TextView
+                    android:id="@+id/summary_goals_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/summary_overdue_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/overdue_red"
-            android:textSize="14sp"
+            android:layout_marginTop="12dp"
+            android:background="#FFCDD2"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:textColor="#D32F2F"
+            android:textSize="12sp"
+            android:textStyle="bold"
             android:visibility="gone" />
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

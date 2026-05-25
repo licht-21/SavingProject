@@ -7,4 +7,20 @@
     <color name="progress_yellow_green">#8BC34A</color>
     <color name="progress_green">#4CAF50</color>
     <color name="overdue_red">#D32F2F</color>
+
+    <!-- Brand Colors -->
+    <color name="brand_blue_dark">#304C89</color>
+    <color name="brand_blue_light">#648DE5</color>
+    <color name="brand_blue_soft">#C4D3EF</color>
+    <color name="brand_cream">#E8E5DA</color>
+    <color name="brand_gold">#A49C74</color>
+    <color name="brand_stroke">#5070B7</color>
+
+    <!-- Semantic Colors Light -->
+    <color name="app_background">#E8E5DA</color>
+    <color name="app_surface">#FFFFFF</color>
+    <color name="app_text_primary">#304C89</color>
+    <color name="app_text_secondary">#5F6368</color>
+    <color name="app_card_background">#FFFFFF</color>
+    <color name="bottom_nav_bg">#C4D3EF</color>
 </resources>

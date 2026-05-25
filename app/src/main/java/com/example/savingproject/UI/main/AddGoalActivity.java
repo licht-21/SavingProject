@@ -11,6 +11,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.savingproject.MODEL.SavingsGoal;
 import com.example.savingproject.R;
 import com.example.savingproject.databinding.ActivityAddGoalBinding;
+import com.google.android.material.datepicker.MaterialDatePicker;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class AddGoalActivity extends AppCompatActivity {
 
@@ -48,17 +54,40 @@ public class AddGoalActivity extends AppCompatActivity {
         boolean editing = editGoalId > 0;
 
         if (editing) {
-            setTitle(R.string.edit_savings_goal);
+            binding.toolbarTitle.setText(R.string.edit_savings_goal);
             binding.goalNameInput.setText(getIntent().getStringExtra(EXTRA_GOAL_NAME));
             binding.targetAmountInput.setText(String.valueOf(getIntent().getDoubleExtra(EXTRA_TARGET, 0)));
             binding.startingAmountInput.setText(String.valueOf(getIntent().getDoubleExtra(EXTRA_CURRENT, 0)));
             String due = getIntent().getStringExtra(EXTRA_DUE_DATE);
             if (due != null) binding.dueDateInput.setText(due);
         } else {
-            setTitle(R.string.new_savings_goal);
+            binding.toolbarTitle.setText(R.string.new_savings_goal);
         }
 
+        // Setup Date Picker
+        binding.dueDateInput.setOnClickListener(v -> showDatePicker());
+        binding.dueDateLayout.setEndIconOnClickListener(v -> showDatePicker());
+        // Also allow clicking on the TextInputLayout itself
+        binding.dueDateLayout.setOnClickListener(v -> showDatePicker());
+
         binding.saveGoalButton.setOnClickListener(v -> saveGoal(editing));
+        
+        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
+    }
+
+    private void showDatePicker() {
+        MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select Due Date")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build();
+
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+            binding.dueDateInput.setText(sdf.format(new Date(selection)));
+        });
+
+        datePicker.show(getSupportFragmentManager(), "DATE_PICKER");
     }
 
     private void saveGoal(boolean editing) {

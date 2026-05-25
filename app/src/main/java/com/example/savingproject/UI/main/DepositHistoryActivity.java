@@ -41,11 +41,17 @@ public class DepositHistoryActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
         binding.toolbar.setNavigationOnClickListener(v -> finish());
 
         String goalName = getIntent().getStringExtra(EXTRA_GOAL_NAME);
         if (goalName != null) {
-            binding.toolbar.setSubtitle(goalName);
+            binding.toolbarSubtitle.setText(goalName);
+            binding.toolbarSubtitle.setVisibility(View.VISIBLE);
+        } else {
+            binding.toolbarSubtitle.setVisibility(View.GONE);
         }
 
         int goalId = getIntent().getIntExtra(EXTRA_GOAL_ID, -1);

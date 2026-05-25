@@ -1,95 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="1dp"
+    app:strokeWidth="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:background="#9EB7E5"
+        android:padding="20dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/goal_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="Goal Name" />
-
-            <TextView
-                android:id="@+id/goal_overdue_badge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:background="@color/overdue_red"
-                android:paddingHorizontal="6dp"
-                android:paddingVertical="2dp"
-                android:text="@string/overdue"
-                android:textColor="@color/white"
-                android:textSize="10sp"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/goal_percent"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
                 android:textStyle="bold"
-                android:visibility="gone" />
+                android:textColor="#304C89"
+                android:text="Goal Name" />
 
             <TextView
                 android:id="@+id/goal_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:textSize="16sp"
+                android:layout_toStartOf="@id/goal_menu_button"
+                android:layout_marginEnd="12dp"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:textColor="#304C89"
                 android:textStyle="bold"
                 android:text="0%" />
 
             <ImageButton
                 android:id="@+id/goal_menu_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/goal_options"
                 android:src="@android:drawable/ic_menu_more"
-                app:tint="?android:attr/textColorPrimary" />
-        </LinearLayout>
+                app:tint="#A49C74" />
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/goal_amount"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="0 / 0" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/goal_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="#648DE5"
+                android:text="0 / 0" />
+
+            <TextView
+                android:id="@+id/goal_overdue_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/rounded_textview_background"
+                android:backgroundTint="#FFEBEE"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="@string/overdue"
+                android:textColor="#D32F2F"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/goal_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="12sp"
+            android:layout_marginTop="2dp"
+            android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+            android:textColor="#648DE5"
             android:visibility="gone" />
 
-        <ProgressBar
+        <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/goal_progress"
-            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:max="100" />
+            android:layout_marginTop="16dp"
+            app:trackCornerRadius="4dp"
+            app:trackThickness="8dp"
+            app:indicatorColor="#304C89"
+            app:trackColor="#E1E4E8"
+            android:progress="0" />
 
         <TextView
             android:id="@+id/goal_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:text="@string/tap_to_add_deposit"
-            android:textSize="12sp" />
+            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+            android:textColor="#648DE5"
+            android:textStyle="bold" />
+
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
