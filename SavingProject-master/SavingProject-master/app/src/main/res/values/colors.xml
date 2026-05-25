@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="progress_red">#E53935</color>
+    <color name="progress_yellow">#F9A825</color>
+    <color name="progress_yellow_green">#7CB342</color>
+    <color name="progress_green">#43A047</color>
+    <color name="overdue_red">#C62828</color>
+
+    <!-- Brand -->
+    <color name="brand_blue_dark">#2A4575</color>
+    <color name="brand_blue_light">#5B7FD6</color>
+    <color name="brand_blue_soft">#D8E4F8</color>
+    <color name="brand_cream">#F3F1EB</color>
+    <color name="brand_gold">#8E8668</color>
+    <color name="brand_stroke">#4A6FA5</color>
+
+    <!-- Semantic (light) -->
+    <color name="app_background">#F3F1EB</color>
+    <color name="app_surface">#FFFFFF</color>
+    <color name="app_text_primary">#2A4575</color>
+    <color name="app_text_secondary">#5C6470</color>
+    <color name="app_text_on_primary">#FFFFFF</color>
+    <color name="app_card_background">#FFFFFF</color>
+    <color name="goal_card_accent">#EEF3FC</color>
+    <color name="bottom_nav_bg">#FFFFFF</color>
+    <color name="divider">#E2E6ED</color>
+    <color name="overdue_badge_bg">#FFEBEE</color>
+    <color name="overdue_summary_bg">#FFCDD2</color>
+    <color name="icon_circle_bg">#EEF3FC</color>
+    <color name="progress_track">#E8ECF4</color>
+    <color name="summary_gradient_start">#2A4575</color>
+    <color name="summary_gradient_end">#4A6FA5</color>
+</resources>

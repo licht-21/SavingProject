@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_screen_horizontal">20dp</dimen>
+    <dimen name="spacing_screen_vertical">16dp</dimen>
+    <dimen name="spacing_section">24dp</dimen>
+    <dimen name="spacing_card">12dp</dimen>
+    <dimen name="spacing_item">8dp</dimen>
+
+    <dimen name="radius_card">16dp</dimen>
+    <dimen name="radius_card_large">20dp</dimen>
+    <dimen name="radius_button">12dp</dimen>
+    <dimen name="radius_chip">8dp</dimen>
+
+    <dimen name="elevation_card">3dp</dimen>
+    <dimen name="elevation_bottom_nav">8dp</dimen>
+    <dimen name="elevation_fab">6dp</dimen>
+</resources>
