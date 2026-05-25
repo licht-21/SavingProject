@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/spacing_screen_horizontal">
 
-    <EditText
-        android:id="@+id/deposit_amount_input"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.SavingProject.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/deposit_hint"
-        android:inputType="numberDecimal" />
+        app:prefixText="₱">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/deposit_amount_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:textColor="@color/app_text_primary" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,31 +27,37 @@
         android:layout_marginTop="12dp"
         android:orientation="horizontal">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/quick_100_button"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/Widget.SavingProject.Button.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:text="+100" />
+            android:minHeight="44dp"
+            android:text="+100"
+            android:textSize="13sp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/quick_500_button"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/Widget.SavingProject.Button.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
             android:layout_weight="1"
-            android:text="+500" />
+            android:minHeight="44dp"
+            android:text="+500"
+            android:textSize="13sp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/quick_1000_button"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/Widget.SavingProject.Button.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_weight="1"
-            android:text="+1000" />
+            android:minHeight="44dp"
+            android:text="+1000"
+            android:textSize="13sp" />
     </LinearLayout>
 </LinearLayout>

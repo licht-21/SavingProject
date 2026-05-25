@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8E5DA"
+    android:background="@color/app_background"
     tools:context=".UI.main.SettingsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -17,9 +17,9 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
+            style="@style/Widget.SavingProject.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#E8E5DA"
             app:title=""
             app:titleCentered="true">
 
@@ -28,9 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/options"
-                android:textColor="#304C89"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
+                android:textAppearance="@style/TextAppearance.SavingProject.ToolbarTitle" />
 
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -47,45 +45,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="@dimen/spacing_screen_horizontal">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/app_card_background"
+                app:cardCornerRadius="@dimen/radius_card"
+                app:cardElevation="@dimen/elevation_card"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="@dimen/spacing_screen_vertical">
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/dark_mode_switch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/dark_mode"
-                        android:textColor="#304C89"
                         android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                        app:thumbTint="#304C89"
-                        app:trackTint="#648DE5" />
+                        android:textColor="@color/app_text_primary"
+                        app:thumbTint="@color/brand_blue_dark"
+                        app:trackTint="@color/brand_blue_soft" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginVertical="16dp"
-                        android:background="#DDDDDD" />
+                        android:layout_marginVertical="@dimen/spacing_screen_vertical"
+                        android:background="@color/divider" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="@string/date_format_label"
-                        android:textColor="#304C89"
-                        android:textStyle="bold"
-                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_marginBottom="8dp" />
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                        android:textColor="@color/app_text_primary"
+                        android:textStyle="bold" />
 
                     <RadioGroup
                         android:id="@+id/date_format_group"
@@ -97,28 +96,27 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="DD/MM/YYYY"
-                            android:textColor="#304C89"
-                            app:buttonTint="#304C89" />
+                            android:textColor="@color/app_text_primary"
+                            app:buttonTint="@color/brand_blue_dark" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/date_format_yyyymmdd"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="YYYY-MM-DD"
-                            android:textColor="#304C89"
-                            app:buttonTint="#304C89" />
+                            android:textColor="@color/app_text_primary"
+                            app:buttonTint="@color/brand_blue_dark" />
                     </RadioGroup>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/save_settings_button"
+                style="@style/Widget.SavingProject.Button.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="32dp"
-                android:text="@string/save_settings"
-                app:cornerRadius="12dp"
-                app:backgroundTint="#304C89" />
+                android:layout_marginTop="@dimen/spacing_section"
+                android:text="@string/save_settings" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/logout_button"
@@ -127,21 +125,18 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/logout"
-                android:textColor="#D32F2F"
-                app:strokeColor="#D32F2F"
-                app:cornerRadius="12dp" />
+                android:textColor="@color/overdue_red"
+                app:cornerRadius="@dimen/radius_button"
+                app:strokeColor="@color/overdue_red" />
 
         </LinearLayout>
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
+        style="@style/Widget.SavingProject.BottomNavigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#C4D3EF"
-        app:elevation="16dp"
-        app:itemIconTint="@color/bottom_nav_icon_color"
-        app:itemTextColor="@color/bottom_nav_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA">
+    android:background="@color/app_background">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -15,11 +15,10 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
+            style="@style/Widget.SavingProject.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#E8E5DA"
             app:navigationIcon="?attr/homeAsUpIndicator"
-            app:navigationIconTint="#304C89"
             app:title=""
             app:titleCentered="true">
 
@@ -35,16 +34,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/deposit_history"
-                    android:textColor="#304C89"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
+                    android:textAppearance="@style/TextAppearance.SavingProject.ToolbarTitle" />
 
                 <TextView
                     android:id="@+id/toolbar_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#304C89"
                     android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+                    android:textColor="@color/app_text_secondary"
                     android:visibility="gone"
                     tools:text="Goal Name"
                     tools:visibility="visible" />
@@ -57,10 +54,10 @@
         android:id="@+id/empty_state_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="24dp"
+        android:padding="@dimen/spacing_section"
         android:text="@string/empty_deposits"
         android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-        android:textColor="?android:attr/textColorSecondary"
+        android:textColor="@color/app_text_secondary"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +69,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:padding="8dp"
+        android:paddingHorizontal="@dimen/spacing_screen_horizontal"
+        android:paddingTop="@dimen/spacing_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

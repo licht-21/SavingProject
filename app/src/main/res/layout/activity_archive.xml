@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8E5DA"
+    android:background="@color/app_background"
     tools:context=".UI.main.ArchiveActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -17,9 +17,9 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
+            style="@style/Widget.SavingProject.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#E8E5DA"
             app:title=""
             app:titleCentered="true">
 
@@ -28,9 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/archived_goals"
-                android:textColor="#304C89"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
+                android:textAppearance="@style/TextAppearance.SavingProject.ToolbarTitle" />
 
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -40,10 +38,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="24dp"
+        android:lineSpacingExtra="4dp"
+        android:padding="@dimen/spacing_section"
         android:text="@string/empty_archive"
         android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-        android:textColor="?android:attr/textColorSecondary"
+        android:textColor="@color/app_text_secondary"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +54,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:padding="12dp"
+        android:paddingHorizontal="@dimen/spacing_screen_horizontal"
+        android:paddingTop="@dimen/spacing_item"
         app:layout_constraintBottom_toTopOf="@id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,12 +63,9 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
+        style="@style/Widget.SavingProject.BottomNavigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#C4D3EF"
-        app:elevation="16dp"
-        app:itemIconTint="@color/bottom_nav_icon_color"
-        app:itemTextColor="@color/bottom_nav_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

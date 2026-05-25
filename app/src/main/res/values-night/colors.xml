@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Semantic Colors Dark -->
-    <color name="app_background">#121212</color>
-    <color name="app_surface">#1E1E1E</color>
+    <color name="app_background">#121418</color>
+    <color name="app_surface">#1C1F26</color>
     <color name="app_text_primary">#E8E5DA</color>
-    <color name="app_text_secondary">#BDBDBD</color>
-    <color name="app_card_background">#2C2C2C</color>
-    <color name="bottom_nav_bg">#1A237E</color>
+    <color name="app_text_secondary">#A8B0BD</color>
+    <color name="app_text_on_primary">#121418</color>
+    <color name="app_card_background">#252932</color>
+    <color name="goal_card_accent">#2A3344</color>
+    <color name="bottom_nav_bg">#1C1F26</color>
+    <color name="divider">#3A404D</color>
+    <color name="overdue_badge_bg">#4A2024</color>
+    <color name="overdue_summary_bg">#5C2A2E</color>
+    <color name="icon_circle_bg">#2A3344</color>
+    <color name="progress_track">#3A404D</color>
+    <color name="summary_gradient_start">#3D5A8C</color>
+    <color name="summary_gradient_end">#5B7FD6</color>
 </resources>
