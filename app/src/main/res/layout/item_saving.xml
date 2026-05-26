@@ -5,9 +5,13 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/spacing_card"
     android:layout_marginVertical="@dimen/spacing_item"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
     app:cardBackgroundColor="@color/app_card_background"
     app:cardCornerRadius="@dimen/radius_card"
     app:cardElevation="@dimen/elevation_card"
+    app:rippleColor="@color/brand_blue_soft"
     app:strokeColor="@color/brand_blue_soft"
     app:strokeWidth="1dp">
 

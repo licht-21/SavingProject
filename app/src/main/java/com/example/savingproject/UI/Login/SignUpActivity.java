@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.savingproject.UI.main.MainActivity;
 import com.example.savingproject.databinding.ActivitySignupBinding;
+import com.example.savingproject.util.UiAnimUtil;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -27,6 +28,9 @@ public class SignUpActivity extends AppCompatActivity {
         binding.signUpButton.setOnClickListener(v -> attemptSignUp());
 
         binding.loginTextView.setOnClickListener(v -> finish());
+
+        UiAnimUtil.fadeIn(binding.signupLogo, 0);
+        UiAnimUtil.fadeInUp(binding.signupFormCard);
     }
 
     private void attemptSignUp() {

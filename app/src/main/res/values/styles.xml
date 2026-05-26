@@ -15,6 +15,12 @@
         <item name="android:textColor">@color/app_text_secondary</item>
     </style>
 
+    <style name="TextAppearance.SavingProject.SectionLabel" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/app_text_primary</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
     <style name="Widget.SavingProject.Toolbar" parent="Widget.Material3.Toolbar">
         <item name="android:background">@color/app_background</item>
         <item name="navigationIconTint">@color/app_text_primary</item>
@@ -53,11 +59,16 @@
     </style>
 
     <style name="Widget.SavingProject.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
-        <item name="android:background">@color/app_surface</item>
+        <item name="android:background">@drawable/bg_bottom_nav</item>
         <item name="elevation">@dimen/elevation_bottom_nav</item>
         <item name="itemIconTint">@color/bottom_nav_icon_color</item>
         <item name="itemTextColor">@color/bottom_nav_text_color</item>
         <item name="labelVisibilityMode">labeled</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.SavingProject.BottomNav.ActiveIndicator</item>
+    </style>
+
+    <style name="Widget.SavingProject.BottomNav.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/brand_blue_soft</item>
     </style>
 
     <style name="Widget.SavingProject.Fab" parent="Widget.Material3.FloatingActionButton.Primary">

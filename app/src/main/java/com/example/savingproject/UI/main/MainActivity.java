@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.savingproject.DATA.SessionManager;
@@ -23,6 +24,7 @@ import com.example.savingproject.UI.Login.LoginActivity;
 import com.example.savingproject.UI.adapter.SavingsAdapter;
 import com.example.savingproject.databinding.ActivityMainBinding;
 import com.example.savingproject.databinding.DialogDepositBinding;
+import com.example.savingproject.util.UiAnimUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +59,16 @@ public class MainActivity extends AppCompatActivity implements SavingsAdapter.On
         }
 
         binding.savingsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DefaultItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(300);
+        itemAnimator.setChangeDuration(250);
+        itemAnimator.setMoveDuration(250);
+        binding.savingsRecyclerView.setItemAnimator(itemAnimator);
         adapter = new SavingsAdapter(this, SavingsAdapter.DisplayMode.ACTIVE);
         binding.savingsRecyclerView.setAdapter(adapter);
+
+        binding.emptyState.emptyStateTitle.setText(R.string.empty_goals_title);
+        binding.emptyState.emptyStateSubtitle.setText(R.string.empty_goals_subtitle);
 
         viewModel = new ViewModelProvider(this).get(SavingsViewModel.class);
         viewModel.getActiveSavings().observe(this, this::renderSavings);
@@ -69,8 +79,14 @@ public class MainActivity extends AppCompatActivity implements SavingsAdapter.On
             binding.swipeRefresh.setRefreshing(false);
         });
 
-        binding.addGoalFab.setOnClickListener(v -> openAddGoal());
+        binding.addGoalFab.setOnClickListener(v -> {
+            UiAnimUtil.pulseOnce(binding.addGoalFab);
+            openAddGoal();
+        });
         BottomNavHelper.setup(this, binding.bottomNav, R.id.nav_active);
+
+        UiAnimUtil.fadeInUp(binding.summaryCard.getRoot());
+        UiAnimUtil.fadeIn(binding.addGoalFab, 200);
     }
 
     @Override
@@ -146,8 +162,15 @@ public class MainActivity extends AppCompatActivity implements SavingsAdapter.On
         if (savings == null) savings = new ArrayList<>();
         adapter.updateData(savings);
         boolean empty = savings.isEmpty();
-        binding.emptyStateText.setVisibility(empty ? View.VISIBLE : View.GONE);
+        binding.emptyState.getRoot().setVisibility(empty ? View.VISIBLE : View.GONE);
+        binding.goalsSectionLabel.setVisibility(empty ? View.GONE : View.VISIBLE);
         binding.savingsRecyclerView.setVisibility(empty ? View.GONE : View.VISIBLE);
+        if (empty) {
+            binding.emptyState.getRoot().setTag(R.id.tag_entrance_animated, null);
+            UiAnimUtil.fadeInUp(binding.emptyState.getRoot());
+        } else {
+            UiAnimUtil.playRecyclerLayoutAnimation(binding.savingsRecyclerView);
+        }
     }
 
     private void openAddGoal() {

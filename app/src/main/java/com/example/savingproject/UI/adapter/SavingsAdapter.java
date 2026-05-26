@@ -62,7 +62,7 @@ public class SavingsAdapter extends RecyclerView.Adapter<SavingsAdapter.ViewHold
         holder.binding.goalPercent.setText(String.format(Locale.getDefault(), "%d%%", percent));
         holder.binding.goalAmount.setText(String.format(Locale.getDefault(),
                 "₱%,.2f / ₱%,.2f", goal.getCurrentAmount(), goal.getTargetAmount()));
-        holder.binding.goalProgress.setProgress(percent);
+        holder.binding.goalProgress.setProgressCompat(percent, true);
         holder.binding.goalProgress.setProgressTintList(
                 ColorStateList.valueOf(resolveProgressColor(holder, percent)));
 

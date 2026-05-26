@@ -2,8 +2,13 @@
     <string name="app_name">SavingProject</string>
     <string name="my_savings">My Savings</string>
     <string name="archived_goals">Archived Goals</string>
+    <string name="empty_goals_title">No goals yet</string>
+    <string name="empty_goals_subtitle">Tap the + button below to create your first savings goal.</string>
     <string name="empty_goals">No savings goals yet.\nTap + to create your first goal.</string>
+    <string name="empty_archive_title">No archived goals</string>
+    <string name="empty_archive_subtitle">When you complete a goal, it will appear here.</string>
     <string name="empty_archive">No archived goals yet.\nComplete a goal to see it here.</string>
+    <string name="goals_section_title">Your goals</string>
     <string name="add_goal">Add savings goal</string>
     <string name="new_savings_goal">New Savings Goal</string>
     <string name="edit_savings_goal">Edit Savings Goal</string>

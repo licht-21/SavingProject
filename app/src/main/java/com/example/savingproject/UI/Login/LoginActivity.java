@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.savingproject.DATA.SessionManager;
 import com.example.savingproject.UI.main.MainActivity;
 import com.example.savingproject.databinding.ActivityLoginBinding;
+import com.example.savingproject.util.UiAnimUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,6 +38,11 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.signUpButton.setOnClickListener(v ->
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class)));
+
+        UiAnimUtil.fadeIn(binding.loginLogo, 0);
+        UiAnimUtil.fadeIn(binding.loginTitle, 80);
+        UiAnimUtil.fadeIn(binding.loginSubtitle, 140);
+        UiAnimUtil.fadeInUp(binding.loginFormCard);
     }
 
     private void attemptLogin() {

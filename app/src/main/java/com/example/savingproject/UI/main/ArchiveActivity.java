@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.savingproject.DATA.SessionManager;
@@ -14,6 +15,7 @@ import com.example.savingproject.R;
 import com.example.savingproject.UI.Login.LoginActivity;
 import com.example.savingproject.UI.adapter.SavingsAdapter;
 import com.example.savingproject.databinding.ActivityArchiveBinding;
+import com.example.savingproject.util.UiAnimUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +49,14 @@ public class ArchiveActivity extends AppCompatActivity implements SavingsAdapter
         setContentView(binding.getRoot());
 
         binding.savingsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DefaultItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(300);
+        binding.savingsRecyclerView.setItemAnimator(itemAnimator);
         adapter = new SavingsAdapter(this, SavingsAdapter.DisplayMode.ARCHIVED);
         binding.savingsRecyclerView.setAdapter(adapter);
+
+        binding.emptyState.emptyStateTitle.setText(R.string.empty_archive_title);
+        binding.emptyState.emptyStateSubtitle.setText(R.string.empty_archive_subtitle);
 
         viewModel = new ViewModelProvider(this).get(SavingsViewModel.class);
         viewModel.getArchivedSavings().observe(this, this::renderSavings);
@@ -68,8 +76,14 @@ public class ArchiveActivity extends AppCompatActivity implements SavingsAdapter
         if (savings == null) savings = new ArrayList<>();
         adapter.updateData(savings);
         boolean empty = savings.isEmpty();
-        binding.emptyStateText.setVisibility(empty ? View.VISIBLE : View.GONE);
+        binding.emptyState.getRoot().setVisibility(empty ? View.VISIBLE : View.GONE);
         binding.savingsRecyclerView.setVisibility(empty ? View.GONE : View.VISIBLE);
+        if (empty) {
+            binding.emptyState.getRoot().setTag(R.id.tag_entrance_animated, null);
+            UiAnimUtil.fadeInUp(binding.emptyState.getRoot());
+        } else {
+            UiAnimUtil.playRecyclerLayoutAnimation(binding.savingsRecyclerView);
+        }
     }
 
     @Override

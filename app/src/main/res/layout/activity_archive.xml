@@ -33,27 +33,25 @@
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/empty_state_text"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/empty_state"
+        layout="@layout/layout_empty_state"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:lineSpacingExtra="4dp"
-        android:padding="@dimen/spacing_section"
-        android:text="@string/empty_archive"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-        android:textColor="@color/app_text_secondary"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_bar" />
+        app:layout_constraintTop_toBottomOf="@id/app_bar"
+        app:layout_constraintVertical_bias="0.35" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/savings_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layoutAnimation="@anim/layout_fall_down"
         android:clipToPadding="false"
+        android:overScrollMode="never"
         android:paddingHorizontal="@dimen/spacing_screen_horizontal"
         android:paddingTop="@dimen/spacing_item"
         app:layout_constraintBottom_toTopOf="@id/bottom_nav"

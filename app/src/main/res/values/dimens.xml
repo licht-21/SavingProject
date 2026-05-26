@@ -13,5 +13,6 @@
 
     <dimen name="elevation_card">3dp</dimen>
     <dimen name="elevation_bottom_nav">8dp</dimen>
-    <dimen name="elevation_fab">6dp</dimen>
+    <dimen name="elevation_fab">8dp</dimen>
+    <dimen name="fab_margin_bottom">88dp</dimen>
 </resources>

@@ -60,25 +60,32 @@
                     android:id="@+id/summary_card"
                     layout="@layout/layout_summary_card" />
 
-                <TextView
-                    android:id="@+id/empty_state_text"
+                <include
+                    android:id="@+id/empty_state"
+                    layout="@layout/layout_empty_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
-                    android:gravity="center"
-                    android:lineSpacingExtra="4dp"
-                    android:padding="@dimen/spacing_section"
-                    android:text="@string/empty_goals"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                    android:textColor="@color/app_text_secondary"
+                    android:layout_marginTop="48dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/goals_section_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_section"
+                    android:layout_marginBottom="@dimen/spacing_item"
+                    android:text="@string/goals_section_title"
+                    android:textAppearance="@style/TextAppearance.SavingProject.SectionLabel"
                     android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/savings_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layoutAnimation="@anim/layout_fall_down"
                     android:nestedScrollingEnabled="false"
-                    android:clipToPadding="false" />
+                    android:clipToPadding="false"
+                    android:overScrollMode="never" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -98,11 +105,11 @@
         style="@style/Widget.SavingProject.Fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="@dimen/spacing_screen_horizontal"
+        android:layout_marginBottom="88dp"
         android:contentDescription="@string/add_goal"
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
